@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const JobSchema = new mongoose.Schema({
     title: {
@@ -10,7 +11,7 @@ const JobSchema = new mongoose.Schema({
         required: true,
     },
     phone: {
-        type: number,
+        type: Number,
         required: true,
     },
     workType: {
@@ -22,3 +23,7 @@ const JobSchema = new mongoose.Schema({
         default: Date.now,
     }
 })
+
+JobSchema.plugin(mongoosePaginate)
+
+mongoose.model('Job', JobSchema);
